@@ -1,0 +1,49 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: claricore
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  redis:
+    image: redis:7-alpine
+
+  api:
+    build:
+      context: .
+      dockerfile: apps/api/Dockerfile
+    env_file: .env
+    depends_on: [postgres, redis]
+    ports: ["4000:4000"]
+
+  worker:
+    build:
+      context: .
+      dockerfile: apps/worker/Dockerfile
+    env_file: .env
+    depends_on: [postgres, redis]
+    ports: ["4200:4200"]
+
+  scheduler:
+    build:
+      context: .
+      dockerfile: apps/scheduler/Dockerfile
+    env_file: .env
+    depends_on: [postgres, redis]
+    ports: ["4300:4300"]
+
+  webhook-gateway:
+    build:
+      context: .
+      dockerfile: apps/webhook-gateway/Dockerfile
+    env_file: .env
+    depends_on: [postgres, redis]
+    ports: ["4100:4100"]
+
+volumes:
+  pgdata:

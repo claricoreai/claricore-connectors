@@ -11,8 +11,8 @@
   "scripts": {
     "dev": "tsc -w -p tsconfig.json",
     "build": "tsc -p tsconfig.json",
-    "lint": "node -e \"console.log('lint @claricore/transformations')\"",
-    "test": "node -e \"console.log('test @claricore/transformations')\"",
+    "lint": "eslint src --ext .ts",
+    "test": "vitest run",
     "typecheck": "tsc --noEmit -p tsconfig.json",
     "clean": "rm -rf dist"
   },
