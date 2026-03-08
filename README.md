@@ -1,9 +1,38 @@
 
 # Claricore Connectors
 
-Open-source **data connector and ETL framework** for the Claricore AI platform.
+<p align="center">
+  <img src="https://img.shields.io/badge/status-active-success" />
+  <img src="https://img.shields.io/badge/license-MIT-blue" />
+  <img src="https://img.shields.io/badge/node-20%2B-green" />
+  <img src="https://img.shields.io/badge/TypeScript-5.x-blue" />
+  <img src="https://img.shields.io/badge/Redis-BullMQ-red" />
+  <img src="https://img.shields.io/badge/PostgreSQL-supported-blue" />
+</p>
 
-Claricore Connectors enables teams to build scalable integrations between enterprise systems and data platforms such as:
+<p align="center">
+Open-source data connector framework for building scalable ETL pipelines and integrations across enterprise systems.
+</p>
+
+---
+
+# What is Claricore Connectors?
+
+Claricore Connectors is a modular ETL platform for connecting enterprise systems to data platforms and AI pipelines.
+
+It provides:
+
+- Connector SDK
+- Async job processing
+- Incremental sync
+- Secure credential storage
+- Webhook ingestion
+- Scheduled pipelines
+- Transformation pipelines
+- Retry + dead letter queues
+- Observability
+
+Supported systems include:
 
 - Salesforce
 - SAP
@@ -13,45 +42,40 @@ Claricore Connectors enables teams to build scalable integrations between enterp
 - Google Analytics
 - Custom APIs
 
-It provides a modular architecture for **extracting, transforming, and loading (ETL)** data with support for:
-
-- Connector SDK
-- Async job execution
-- Encrypted credential storage
-- Incremental sync checkpoints
-- Scheduled syncs
-- Webhook ingestion
-- Retry & dead-letter queues
-- Observability
-
 ---
 
 # Architecture
 
-Claricore uses a **modular service architecture** built around workers and queues.
+Claricore uses a worker-based distributed architecture.
 
 Client / UI / CLI
         │
         ▼
       API
         │
-        ├── PostgreSQL (connections, jobs, checkpoints)
-        ├── Redis (BullMQ queue)
-        └── Secret Manager (encrypted credentials)
+        ├── PostgreSQL
+        │      connections
+        │      jobs
+        │      checkpoints
         │
-        ▼
-      Worker
+        ├── Secret Manager
+        │      encrypted credentials
         │
-   extract → transform → load
-        │
-        ▼
-   Destination System
+        └── Redis Queue
+               │
+               ▼
+            Worker
+               │
+        extract → transform → load
+               │
+               ▼
+         Destination System
 
-Additional services:
+Additional runtime services:
 
-Scheduler → recurring sync jobs
-Webhook Gateway → event-driven sync
-Observability → logs + metrics + traces
+Scheduler → recurring sync jobs  
+Webhook Gateway → event-driven ingestion  
+Observability → logs + metrics + tracing
 
 ---
 
@@ -59,7 +83,7 @@ Observability → logs + metrics + traces
 
 ## Connector SDK
 
-Create connectors using standardized interfaces.
+Create connectors using a consistent interface.
 
 - SourceConnector
 - DestinationConnector
@@ -75,7 +99,7 @@ Supports:
 
 ## Async Job Processing
 
-API → Redis queue → Worker → Connector → Loader
+API → Redis → Worker → Connector → Loader
 
 Includes:
 
@@ -85,29 +109,19 @@ Includes:
 
 ---
 
-## Secure Credential Storage
-
-Credentials are encrypted using **AES-256-GCM** and stored in PostgreSQL.
-
----
-
 ## Incremental Sync
 
-Claricore tracks sync progress using checkpoints:
+Claricore tracks progress using checkpoints:
 
-- connection_id
-- resource
-- cursor
+connection_id  
+resource  
+cursor  
 
 ---
 
-## Transformation Layer
+## Secure Credential Storage
 
-Records can be mapped to canonical schemas.
-
-Example:
-
-Salesforce Account → CanonicalCustomer
+Credentials are encrypted using AES-256-GCM and stored in PostgreSQL.
 
 ---
 
@@ -121,7 +135,7 @@ POST /webhooks
 
 ---
 
-## Scheduled Sync
+## Scheduled Pipelines
 
 Cron-based schedules supported.
 
@@ -163,14 +177,6 @@ connectors/
 scripts/
   generate-connector.ts
   validate-manifests.ts
-
----
-
-# Requirements
-
-- Node.js 20+
-- pnpm
-- Docker
 
 ---
 
@@ -237,13 +243,13 @@ POST /webhooks
 
 # ETL Pipeline
 
-Extract
- ↓
-Transform
- ↓
-Load
- ↓
-Checkpoint
+Extract  
+ ↓  
+Transform  
+ ↓  
+Load  
+ ↓  
+Checkpoint  
 
 ---
 
@@ -263,6 +269,21 @@ pnpm generate:connector hubspot
 
 ---
 
+# Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Commit changes
+4. Submit a pull request
+
+---
+
 # License
 
 MIT License
+
+---
+
+# Claricore AI
+
+Claricore Connectors is part of the Claricore AI data intelligence platform, enabling organizations to build AI-ready data pipelines across enterprise systems.
