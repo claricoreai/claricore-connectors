@@ -11,7 +11,7 @@
   "scripts": {
     "dev": "tsc -w -p tsconfig.json",
     "build": "tsc -p tsconfig.json",
-    "lint": "node -e \"console.log('lint @claricore/registry')\"",
+    "lint": "eslint src --ext .ts",
     "test": "node -e \"console.log('test @claricore/registry')\"",
     "typecheck": "tsc --noEmit -p tsconfig.json",
     "clean": "rm -rf dist"

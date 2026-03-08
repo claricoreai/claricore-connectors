@@ -1,23 +1,19 @@
 {
-  "name": "@claricore/checkpoints",
-  "version": "0.4.0",
+  "name": "@claricore/connector-template",
+  "version": "0.1.0",
   "private": false,
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "files": [
-    "dist",
-    "migrations"
-  ],
+  "files": ["dist", "connector.manifest.json"],
   "scripts": {
     "dev": "tsc -w -p tsconfig.json",
     "build": "tsc -p tsconfig.json",
-    "lint": "eslint src --ext .ts",
-    "test": "node -e \"console.log('test @claricore/checkpoints')\"",
+    "lint": "eslint src test --ext .ts",
+    "test": "vitest run",
     "typecheck": "tsc --noEmit -p tsconfig.json",
     "clean": "rm -rf dist"
   },
   "dependencies": {
-    "@claricore/db": "workspace:*",
     "@claricore/core": "workspace:*"
   }
 }

@@ -1,0 +1,12 @@
+{
+  "id": "template",
+  "name": "Template",
+  "version": "0.1.0",
+  "category": "custom",
+  "resources": ["default"],
+  "capabilities": {
+    "incrementalSync": true,
+    "schemaDiscovery": true,
+    "webhooks": false
+  }
+}

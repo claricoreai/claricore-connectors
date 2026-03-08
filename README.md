@@ -1,4 +1,3 @@
-
 # Claricore Connectors
 
 <p align="center">
@@ -10,63 +9,66 @@
   <img src="https://img.shields.io/badge/PostgreSQL-supported-blue" />
 </p>
 
-<p align="center">
 Open-source data connector framework for building scalable ETL pipelines and integrations across enterprise systems.
-</p>
 
----
+## Local development
 
-# What is Claricore Connectors?
+### Prerequisites
 
-Claricore Connectors is a modular **data integration platform** designed to connect enterprise systems to analytics, data platforms, and AI pipelines.
+- Node.js 20+
+- pnpm 9+
+- Docker + Docker Compose (for local Postgres/Redis)
+- `jq` (used by `scripts/smoke-test.sh`)
 
-It provides a scalable architecture for building connectors and running ETL pipelines across systems such as:
+### Quick start
 
-- Salesforce
-- SAP
-- Snowflake
-- Databricks
-- AWS
-- Google Analytics
-- Custom APIs
+```bash
+cp .env.example .env
+docker compose up -d
+pnpm install
+pnpm db:migrate
+pnpm dev
+```
 
-Claricore includes:
+### Core commands
 
-- Connector SDK
-- Async job processing
-- Incremental sync checkpoints
-- Encrypted credential storage
-- Webhook ingestion
-- Scheduled pipelines
-- Retry + dead-letter queues
-- Observability
+```bash
+pnpm install         # install dependencies
+pnpm db:migrate      # run db migrations
+pnpm dev             # run all apps in dev mode via turbo
+pnpm test            # run vitest suites via turbo
+pnpm lint            # run eslint across workspaces
+pnpm build           # build all packages/apps
+pnpm validate:manifests
+```
 
----
+### Health endpoints
 
-# Architecture
+- API: `GET http://localhost:4000/health`
+- Webhook gateway: `GET http://localhost:4100/health`
+- Worker: `GET http://localhost:4200/health`
+- Scheduler: `GET http://localhost:4300/health`
 
-Claricore uses a **worker-based distributed architecture**.
+### Smoke test
+
+After services are up:
+
+```bash
+bash scripts/smoke-test.sh
+```
+
+## Architecture
 
 ```mermaid
 flowchart TD
+Client --> API
+API --> Postgres
+API --> Redis
+Redis --> Worker
+Scheduler --> Redis
+Webhook --> Redis
+Worker --> Transform
+Transform --> Load
+```
 
-Client[Client / UI / CLI] --> API[API Service]
-
-API --> Postgres[(PostgreSQL)]
-API --> Redis[(Redis Queue)]
-API --> Secrets[Secret Manager]
-
-Postgres --> DBTables[Connections / Jobs / Checkpoints]
-
-Redis --> Worker[Worker Service]
-
-Worker --> Extract[Extract]
-Extract --> Transform[Transform]
-Transform --> Load[Load]
-
-Load --> Destination[Destination System]
-
-Scheduler[Scheduler Service] --> Redis
-Webhook[Webhook Gateway] --> Redis
-
-Worker --> Observability[Logs / Metrics / Tracing]
+See `docs/ARCHITECTURE.md` for a detailed version.
