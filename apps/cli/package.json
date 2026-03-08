@@ -1,0 +1,16 @@
+{
+  "name": "@claricore/cli",
+  "version": "0.4.0",
+  "private": true,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc -p tsconfig.json",
+    "lint": "node -e \"console.log('lint @claricore/cli')\"",
+    "test": "node -e \"console.log('test @claricore/cli')\"",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {}
+}

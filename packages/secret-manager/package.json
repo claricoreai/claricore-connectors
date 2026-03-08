@@ -1,0 +1,23 @@
+{
+  "name": "@claricore/secret-manager",
+  "version": "0.4.0",
+  "private": false,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "migrations"
+  ],
+  "scripts": {
+    "dev": "tsc -w -p tsconfig.json",
+    "build": "tsc -p tsconfig.json",
+    "lint": "node -e \"console.log('lint @claricore/secret-manager')\"",
+    "test": "node -e \"console.log('test @claricore/secret-manager')\"",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "@claricore/config": "workspace:*",
+    "pg": "^8.12.0"
+  }
+}

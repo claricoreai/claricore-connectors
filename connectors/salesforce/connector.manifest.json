@@ -1,0 +1,12 @@
+{
+  "id": "salesforce",
+  "name": "Salesforce",
+  "version": "0.4.0",
+  "category": "crm",
+  "resources": ["Account", "Contact", "Opportunity"],
+  "capabilities": {
+    "incrementalSync": true,
+    "schemaDiscovery": true,
+    "webhooks": true
+  }
+}

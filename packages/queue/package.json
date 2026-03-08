@@ -1,0 +1,23 @@
+{
+  "name": "@claricore/queue",
+  "version": "0.4.0",
+  "private": false,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "dev": "tsc -w -p tsconfig.json",
+    "build": "tsc -p tsconfig.json",
+    "lint": "node -e \"console.log('lint @claricore/queue')\"",
+    "test": "node -e \"console.log('test @claricore/queue')\"",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "@claricore/config": "workspace:*",
+    "bullmq": "^5.16.0",
+    "ioredis": "^5.4.1"
+  }
+}

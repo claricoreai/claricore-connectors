@@ -1,0 +1,22 @@
+{
+  "name": "@claricore/connector-salesforce",
+  "version": "0.4.0",
+  "private": false,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "connector.manifest.json"
+  ],
+  "scripts": {
+    "dev": "tsc -w -p tsconfig.json",
+    "build": "tsc -p tsconfig.json",
+    "lint": "node -e \"console.log('lint @claricore/connector-salesforce')\"",
+    "test": "node -e \"console.log('test @claricore/connector-salesforce')\"",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "@claricore/core": "workspace:*"
+  }
+}

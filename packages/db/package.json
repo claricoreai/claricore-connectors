@@ -1,0 +1,29 @@
+{
+  "name": "@claricore/db",
+  "version": "0.4.0",
+  "private": false,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "migrations"
+  ],
+  "scripts": {
+    "dev": "tsc -w -p tsconfig.json",
+    "build": "tsc -p tsconfig.json",
+    "lint": "node -e \"console.log('lint @claricore/db')\"",
+    "test": "node -e \"console.log('test @claricore/db')\"",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "clean": "rm -rf dist",
+    "migrate": "tsx src/migrate.ts",
+    "seed": "tsx src/seed.ts"
+  },
+  "dependencies": {
+    "@claricore/config": "workspace:*",
+    "@claricore/core": "workspace:*",
+    "pg": "^8.12.0"
+  },
+  "devDependencies": {
+    "@types/pg": "^8.11.10"
+  }
+}

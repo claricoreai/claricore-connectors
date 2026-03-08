@@ -1,0 +1,25 @@
+{
+  "name": "@claricore/worker",
+  "version": "0.4.0",
+  "private": true,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc -p tsconfig.json",
+    "lint": "node -e \"console.log('lint @claricore/worker')\"",
+    "test": "node -e \"console.log('test @claricore/worker')\"",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "@claricore/checkpoints": "workspace:*",
+    "@claricore/core": "workspace:*",
+    "@claricore/db": "workspace:*",
+    "@claricore/loaders": "workspace:*",
+    "@claricore/observability": "workspace:*",
+    "@claricore/queue": "workspace:*",
+    "@claricore/transformations": "workspace:*",
+    "@claricore/connector-salesforce": "workspace:*"
+  }
+}

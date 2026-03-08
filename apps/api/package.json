@@ -1,0 +1,24 @@
+{
+  "name": "@claricore/api",
+  "version": "0.4.0",
+  "private": true,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc -p tsconfig.json",
+    "lint": "node -e \"console.log('lint @claricore/api')\"",
+    "test": "node -e \"console.log('test @claricore/api')\"",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "@claricore/config": "workspace:*",
+    "@claricore/db": "workspace:*",
+    "@claricore/queue": "workspace:*",
+    "@claricore/registry": "workspace:*",
+    "@claricore/secret-manager": "workspace:*",
+    "@claricore/ui-contracts": "workspace:*",
+    "zod": "^3.23.8"
+  }
+}

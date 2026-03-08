@@ -1,0 +1,23 @@
+{
+  "name": "@claricore/loaders",
+  "version": "0.4.0",
+  "private": false,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "migrations"
+  ],
+  "scripts": {
+    "dev": "tsc -w -p tsconfig.json",
+    "build": "tsc -p tsconfig.json",
+    "lint": "node -e \"console.log('lint @claricore/loaders')\"",
+    "test": "node -e \"console.log('test @claricore/loaders')\"",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "@claricore/core": "workspace:*",
+    "@claricore/observability": "workspace:*"
+  }
+}
